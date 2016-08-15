@@ -15,9 +15,7 @@ Projects based on this template require a working install of [miniconda](http://
 Snakestart takes 1 argument: the name of the project.
 e.g. `snakestart my_project`
 
-It will create a directory with the name of the project and the current date.
-
-Now `cd` into the directory and execute `conda env create -f environment.yml`
+It will create a directory with the name of the project and the current date and create a conda environment with the project name. This conda environment includes snakemake, python3 and the bioconda and r channels.
 
 The `Snakefile` contains some useful rules for updating defined dependencies when pushing to a remote git repo.
 
@@ -25,10 +23,7 @@ The `Snakefile` contains some useful rules for updating defined dependencies whe
 ```bash
 snakestart my_project
 cd my_project_2016-08-15
-conda env creat -f environment.yml
-git init
-git add -A
-git commit -m "first"
+git init && git add -A && git commit -m "first"
 git remote add origin...
 snakemake push
 ```

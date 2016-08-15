@@ -1,0 +1,42 @@
+# Setup
+
+import os, site, snakemake.shell
+
+cur_env_dir = site.PREFIXES[0]				# set conda environment directory e.g. '~/miniconda2/envs/proj'
+snakemake.shell.executable('/bin/bash')		# set snakemake shell executable
+
+
+# Rules To Help With Git Pushes
+
+rule update_env_files:
+	input:
+		os.path.join(cur_env_dir, 'bin'),
+		site.getsitepackages()[0]
+	output:
+		"environment.yml",
+		"exact_environment.yml"
+	shell:
+		"""
+		if [[ -z $(git status -s) ]]; then 
+			python scripts/housekeeping/update-envfile.py -e environment.yml > {output[1]}
+			python scripts/housekeeping/update-envfile.py environment.yml > .snakemake/temp.yml
+			mv .snakemake/temp.yml {output[0]}
+			git add {output[0]} {output[1]}
+			git commit -m "updated conda environment files"
+		else
+			echo "Uncommited changes!" >&2
+			exit 1
+		fi
+		"""
+
+rule push:
+	input: 
+		"environment.yml",
+		"exact_environment.yml",
+		".git/refs/heads/master"
+	output:
+		".git/refs/remotes/origin/master"
+	shell:
+		"""
+		git push
+		"""

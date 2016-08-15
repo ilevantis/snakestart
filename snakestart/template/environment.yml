@@ -1,0 +1,8 @@
+name: <PROJECTNAME>
+channels:
+  - bioconda
+  - r
+dependencies:
+  - python=3
+  - snakemake
+#  - pip:

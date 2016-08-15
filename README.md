@@ -4,7 +4,7 @@ A template + script to set up a basic conda env with snakemake and a sensible di
 
 ## Install
 
-Projects based on this template require a working insgtall of [miniconda](http://conda.pydata.org/docs/install/quick.html) and [conda-env](https://github.com/conda/conda-env).
+Projects based on this template require a working install of [miniconda](http://conda.pydata.org/docs/install/quick.html) and [conda-env](https://github.com/conda/conda-env).
 
 1. Download this repo and`cd` into it
 2. `cp snakestart.bash ~/bin/snakestart`
@@ -19,7 +19,7 @@ It will create a directory with the name of the project and the current date.
 
 Now `cd` into the directory and execute `conda env create -f environment.yml`
 
-The `Snakefile` contains some useful rules for updating defined dependencies when pushing to github.
+The `Snakefile` contains some useful rules for updating defined dependencies when pushing to a remote git repo.
 
 **Example:**
 ```bash
@@ -27,7 +27,8 @@ snakestart my_project
 cd my_project_2016-08-15
 conda env creat -f environment.yml
 git init
+git add -A
+git commit -m "first"
 git remote add origin...
 snakemake push
 ```
-

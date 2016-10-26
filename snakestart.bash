@@ -5,7 +5,11 @@ if [ -z "$1" ] ; then
 	exit 1
 fi
 
-templatedir="$XDG_CONFIG_HOME/snakestart/template"
+if [ -z "$XDG_CONFIG_HOME" ] ; then
+	templatedir=~/.config/snakestart/template
+else
+	templatedir="$XDG_CONFIG_HOME/snakestart/template"
+fi
 
 DATE="$(date +%Y-%m-%d)"
 projectdir="${1}_${DATE}"

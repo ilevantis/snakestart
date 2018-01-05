@@ -19,9 +19,9 @@ projectname="$(basename $1)"
 cp -r "${templatedir}" "${projectdir}" && cd "${projectdir}"
 
 find . -type f \
--exec sed -i "s/<PROJECTNAME>/${projectname}/g" {} \; \
--exec sed -i "s/<DATE>/${DATE}/g" {} \; \
--exec sed -i "s/<PROJECTDIR>/${projectdir}/g" {} \;
+-exec sed -i '' -e "s/<PROJECTNAME>/${projectname}/g" {} \; \
+-exec sed -i '' -e "s/<DATE>/${DATE}/g" {} \; \
+-exec sed -i '' -e "s/<PROJECTDIR>/${projectdir}/g" {} \;
 
 conda env create --file environment.yml
 

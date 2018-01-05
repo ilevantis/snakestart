@@ -12,7 +12,7 @@ else
 fi
 
 DATE="$(date +%Y-%m-%d)"
-projectdir="${1}_${DATE}"
+projectdir="${1}"
 projectname="$(basename $1)"
 
 
@@ -23,6 +23,6 @@ find . -type f \
 -exec sed -i "s/<DATE>/${DATE}/g" {} \; \
 -exec sed -i "s/<PROJECTDIR>/${projectdir}/g" {} \;
 
-conda env create --file environment.yml 
+conda env create --file environment.yml
 
 exit
